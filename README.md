@@ -5,6 +5,7 @@
 
 ## GitHub Rules
 
+- **Remember to make your own branch for this new project and do `git push --set-upstream origin <your branch>`**
 - Do not push to the master branch directly. Always create a PR.
 - Code review comments must be meaningful.
 - Commit messages must be meaningful.
