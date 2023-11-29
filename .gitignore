@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+
+# Build dir
+build/*
+
+# Mac Stuff
+.DS_Store
+
+# For vscode users
+.vscode
