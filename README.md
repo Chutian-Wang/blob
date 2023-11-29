@@ -19,6 +19,8 @@
 
 > You will need all the packages installed first if you are on MacOS, refer to [Libraries](#libraries) section.
 
+Make a build folder by running `mkdir build`.
+
 For MacOS
 
 - run `make -SYS=mac` to build
