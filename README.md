@@ -23,12 +23,12 @@ Make a build folder by running `mkdir build`.
 
 For MacOS
 
-- run `make -SYS=mac` to build
+- run `make SYS=mac` to build
 - run `make mac-run` to run
 
 For CSIL computers
 
-- run `make -SYS=csil` to build
+- run `make SYS=csil` to build
 - run `make csil-run` to run
 
 ## Debugging
