@@ -1,10 +1,9 @@
 CXX   	= g++
-CCFLAGS = -std=c++17 -Wall -Wextra -Werror -g \
--Wno-error=unused-command-line-argument
+CCFLAGS = -std=c++17 -Wall -Wextra -Werror -g
 
 MACINC =  -I/opt/homebrew/include
 
-LINKFLAGS = -L/opt/homebrew/lib -lGL -lglut 
+LINKFLAGS = -L/opt/homebrew/lib -lGL -lglut
 
 
 # Build directory must be created before running make.
