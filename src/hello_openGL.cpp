@@ -1,10 +1,16 @@
 #include <GL/gl.h>
 #include <GL/glut.h>
-
 #include "lib/player.h"
+#include "lib/npc.h"
 
 void display();
 void init();
+void moveNPCs();
+
+// Create instances of NPC class
+NPC npc1;
+NPC npc2;
+NPC npc3;
 
 int main(int argc, char** argv) {
   // Initialise GLUT with command-line parameters.
@@ -27,6 +33,9 @@ int main(int argc, char** argv) {
 
   // Call "display" function
   glutDisplayFunc(display);
+
+  glutIdleFunc(moveNPCs);
+
   // glutMouseFunc(Player::getInstance().mouse);
   glutMotionFunc(Player::getInstance().motion);
 
@@ -50,25 +59,30 @@ void display() {
   glVertex3f(0.25, 0.75, 0.1);
   glEnd();
 
-  // draw blue circle from the player class
+  // Draw blue circle from the player class
   Player::getInstance().displayCircle();
 
-  // draw three red circles from the NPC class
-    for (int i = 0; i < 3; ++i) {
-        NPC::getInstance().move();
-        NPC::getInstance().displayCircle();
-    }
+  // Draw red circles from the NPC instances
+  npc1.displayCircle();
+  npc2.displayCircle();
+  npc3.displayCircle();
 
-  // Display the thing drawn
+  // Display  drawn objects
   glFlush();
 }
 
 void init() {
-  // select clearing (background) color
   glClearColor(0.0, 0.0, 0.0, 0.0);
-
-  // initialize viewing values
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
   glOrtho(0.0, 250.0, 0.0, 250.0, -1.0, 1.0);
+}
+
+// Free-standing function for idle function
+void moveNPCs() {
+  npc1.move();
+  npc2.move();
+  npc3.move();
+
+  glutPostRedisplay();
 }

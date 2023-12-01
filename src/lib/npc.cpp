@@ -1,18 +1,11 @@
 #include "npc.h"
-#include <cstdlib>
+#include <cmath>
+#include <GL/glut.h>
 
-NPC& NPC::getInstance() {
-    static NPC instance;
-    return instance;
-}
-
-NPC::NPC() : npcX(125.0), npcY(125.0) {
+NPC::NPC() {
     // Initialize NPC position
     npcX = static_cast<float>(rand() % 250);
     npcY = static_cast<float>(rand() % 250);
-
-    // Set up the callback functions
-    glutMotionFunc(motion);
 }
 
 NPC::~NPC() {}
@@ -42,11 +35,8 @@ void NPC::move() {
     if (npcX > 250) npcX = 250;
     if (npcY < 0) npcY = 0;
     if (npcY > 250) npcY = 250;
-}
+    // You can add additional logic based on NPC's behavior
 
-void NPC::motion(int x, int y) {
-    // Update player position while mouse is moved
-    Player& player = Player::getInstance();
-    player.setPlayerPosition(x, 250 - y);
+    // Trigger redisplay to update the screen
     glutPostRedisplay();
 }

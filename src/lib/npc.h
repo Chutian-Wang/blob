@@ -5,19 +5,17 @@
 #include <GL/glut.h>
 
 class NPC {
-    private:
+public:
     NPC();
     ~NPC();
-
-    float npcX;
-    float npcY;
-
-    public:
-    static NPC& getInstance();
 
     void drawCircle(float radius);
     void displayCircle();
     void move();
+
+private:
+    float npcX;
+    float npcY;
 };
 
-#endif
+#endif // NPC_H
