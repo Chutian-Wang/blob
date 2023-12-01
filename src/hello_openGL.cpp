@@ -79,7 +79,6 @@ void init() {
   glOrtho(0.0, 250.0, 0.0, 250.0, -1.0, 1.0);
 }
 
-// Free-standing function for idle function
 void moveNPCs() {
   npc1.move();
   npc2.move();

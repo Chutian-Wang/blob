@@ -12,16 +12,16 @@ NPC::NPC() {
 
   // Initialize NPC direction
   directionX =
-      (rand() % 2 == 0) ? 1 : -1;  // Randomly set initial direction in x-axis
+      (rand() % 2 == 0) ? 1 : -1;
   directionY =
-      (rand() % 2 == 0) ? 1 : -1;  // Randomly set initial direction in y-axis
+      (rand() % 2 == 0) ? 1 : -1;
 }
 
 NPC::~NPC() {}
 
 void NPC::drawCircle(float radius) {
   glBegin(GL_TRIANGLE_FAN);
-  glColor3f(1.0, 0.0, 0.0);  // Set circle color to red
+  glColor3f(1.0, 0.0, 0.0);
   glVertex2f(npcX, npcY);    // Center of circle
   for (int i = 0; i <= 360; i++) {
     float angle = i * 3.14159 / 180;
@@ -33,17 +33,16 @@ void NPC::drawCircle(float radius) {
 void NPC::displayCircle() { drawCircle(30); }
 
 void NPC::move() {
-  // Move the NPC in the specified direction
-  npcX += speed * directionX;  // Move in x-axis
-  npcY += speed * directionY;  // Move in y-axis
+  npcX += speed * directionX;
+  npcY += speed * directionY;
 
   // Bounce back when hitting the screen borders
   if (npcX < 0 || npcX > 250) {
-    directionX = -directionX;  // Reverse direction in x-axis
+    directionX = -directionX;
   }
 
   if (npcY < 0 || npcY > 250) {
-    directionY = -directionY;  // Reverse direction in y-axis
+    directionY = -directionY;
   }
 
   glutPostRedisplay();
