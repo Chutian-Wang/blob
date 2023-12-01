@@ -16,6 +16,9 @@ public:
 private:
     float npcX;
     float npcY;
+    float directionX;
+    float directionY;
+    float speed = 0.04; // Adjust the speed as needed
 };
 
 #endif // NPC_H

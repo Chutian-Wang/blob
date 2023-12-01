@@ -1,3 +1,4 @@
+// NPC.cpp
 #include "npc.h"
 #include <cmath>
 #include <GL/glut.h>
@@ -6,6 +7,10 @@ NPC::NPC() {
     // Initialize NPC position
     npcX = static_cast<float>(rand() % 250);
     npcY = static_cast<float>(rand() % 250);
+
+    // Initialize NPC direction
+    directionX = (rand() % 2 == 0) ? 1 : -1; // Randomly set initial direction in x-axis
+    directionY = (rand() % 2 == 0) ? 1 : -1; // Randomly set initial direction in y-axis
 }
 
 NPC::~NPC() {}
@@ -26,17 +31,18 @@ void NPC::displayCircle() {
 }
 
 void NPC::move() {
-    // Move the NPC randomly
-    npcX += static_cast<float>(rand() % 5 - 2); // Random movement in x-axis
-    npcY += static_cast<float>(rand() % 5 - 2); // Random movement in y-axis
+    // Move the NPC in the specified direction
+    npcX += speed * directionX; // Move in x-axis
+    npcY += speed * directionY; // Move in y-axis
 
-    // Keep NPC within the screen bounds
-    if (npcX < 0) npcX = 0;
-    if (npcX > 250) npcX = 250;
-    if (npcY < 0) npcY = 0;
-    if (npcY > 250) npcY = 250;
-    // You can add additional logic based on NPC's behavior
+    // Bounce back when hitting the screen borders
+    if (npcX < 0 || npcX > 250) {
+        directionX = -directionX; // Reverse direction in x-axis
+    }
 
-    // Trigger redisplay to update the screen
+    if (npcY < 0 || npcY > 250) {
+        directionY = -directionY; // Reverse direction in y-axis
+    }
+
     glutPostRedisplay();
 }
