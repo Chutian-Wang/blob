@@ -53,6 +53,12 @@ void display() {
   // draw blue circle from the player class
   Player::getInstance().displayCircle();
 
+  // draw three red circles from the NPC class
+    for (int i = 0; i < 3; ++i) {
+        NPC::getInstance().move();
+        NPC::getInstance().displayCircle();
+    }
+
   // Display the thing drawn
   glFlush();
 }
