@@ -28,7 +28,7 @@ mac-run:
 	@DISPLAY=:0 ./build/$(RUN)
 
 csil-run:
-	./build/$(RUN)
+	@DISPLAY=:0 ./build/$(RUN)
 
 ifeq "$(SYS)" "mac"
 %: src/%.cpp $(OBJS)
