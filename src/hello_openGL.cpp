@@ -1,7 +1,8 @@
 #include <GL/gl.h>
 #include <GL/glut.h>
-#include "lib/player.h"
+
 #include "lib/npc.h"
+#include "lib/player.h"
 
 void display();
 void init();

@@ -5,20 +5,20 @@
 #include <GL/glut.h>
 
 class NPC {
-public:
-    NPC();
-    ~NPC();
+ public:
+  NPC();
+  ~NPC();
 
-    void drawCircle(float radius);
-    void displayCircle();
-    void move();
+  void drawCircle(float radius);
+  void displayCircle();
+  void move();
 
-private:
-    float npcX;
-    float npcY;
-    float directionX;
-    float directionY;
-    float speed = 0.04; // Adjust the speed as needed
+ private:
+  float npcX;
+  float npcY;
+  float directionX;
+  float directionY;
+  float speed = 0.04;  // Adjust the speed as needed
 };
 
-#endif // NPC_H
+#endif  // NPC_H
