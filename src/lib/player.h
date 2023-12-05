@@ -1,24 +1,16 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include <GL/gl.h>
-#include <GL/glut.h>
+#include "Vec2.h"
+#include "Blob.h"
 
-class Player {
- private:
-  Player();
-  ~Player();
-
-  float playerX;
-  float playerY;
-
+class Player : Blob {
  public:
-  static Player& getInstance();
-
-  void drawCircle(float radius);
-  void displayCircle();
-  // static void mouse(int button, int state, int x, int y);
-  static void motion(int x, int y);
+  Player(flaot radius, Vec2 pos, Vec2 velocity, Color color);
+  virtual ~Player() {};
+  // This function gets key input and
+  // updates the player velocity
+  virtual void  update();
 };
 
 #endif  // PLAYER_H

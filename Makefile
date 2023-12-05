@@ -10,13 +10,16 @@ LINKFLAGS = -L/opt/homebrew/lib -lGL -lglut
 BUILDDIR = build
 
 # Put test executables and main executable here
-EXEC = hello_openGL
+EXEC = blob_game
 
-RUN = hello_openGL
+RUN = blob_game
 
 # Put dependent object builds here.
 OBJS = 	$(BUILDDIR)/npc.o	\
 		$(BUILDDIR)/player.o\
+		$(BUILDDIR)/Vec2.o  \
+		$(BUILDDIR)/Game.o  \
+		$(BUILDDIR)/Basics.o
 
 .PHONY: clean
 
