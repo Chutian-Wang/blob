@@ -11,7 +11,7 @@ class Player : Blob {
   virtual void render();
   // This function gets key input and
   // updates the player velocity
-  virtual void  update();
+  virtual void update(const Game& game);
 };
 
 #endif  // PLAYER_H

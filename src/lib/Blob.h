@@ -3,6 +3,7 @@
 
 #include "Vec2.h"
 #include "Color.h"
+#include "Game.h"
 
 class Blob {
  private:
@@ -21,7 +22,7 @@ class Blob {
 
   // This function gets key input and
   // updates the player velocity
-  virtual void  update() = 0;
+  virtual void update(const Game& game) = 0;
   virtual float get_radius() {return this->radius;}
   virtual void  set_radius(float radius) {this-> radius = radius;}
 

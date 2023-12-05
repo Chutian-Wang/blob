@@ -19,7 +19,7 @@ class Food : Blob {
   Food(flaot radius, Vec2 pos, Vec2 velocity, Color color);
   virtual ~Food() {};
   virtual void render();
-  virtual void update() {};
+  virtual void update(const Game& game) {};
 }
 
 #endif  // NPC_H
