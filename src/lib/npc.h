@@ -11,7 +11,7 @@ class NPC : Blob {
   NPC(flaot radius, Vec2 pos, Vec2 velocity, Color color);
   virtual ~NPC() {};
   virtual void render();
-  virtual void update();
+  virtual void update(const Game& game);
 };
 
 class Food : Blob {

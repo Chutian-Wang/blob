@@ -8,6 +8,7 @@ class Player : Blob {
  public:
   Player(flaot radius, Vec2 pos, Vec2 velocity, Color color);
   virtual ~Player() {};
+  virtual void render();
   // This function gets key input and
   // updates the player velocity
   virtual void  update();

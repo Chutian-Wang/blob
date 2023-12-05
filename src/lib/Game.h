@@ -19,6 +19,9 @@ class Game {
   void start();
   void update();
   void render();
+
+  const std::vector<Blob>& get_blobs() {return this->blobs;}
+  const Player& get_player() {return this->player;}
 };
 
 #endif // GAME_H
