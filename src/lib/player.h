@@ -4,9 +4,18 @@
 #include "Blob.h"
 #include "Vec2.h"
 
-class Player : Blob {
+class Player : public Blob {
+ private:
+  // squared is equivalent to mass
+  float radius;
+  Color color;
+  bool is_dead;
+
+  Vec2 pos;
+  Vec2 velocity;
+
  public:
-  Player(flaot radius, Vec2 pos, Vec2 velocity, Color color);
+  Player(float radius, Vec2 pos, Vec2 velocity, Color color);
   virtual ~Player(){};
   virtual void render();
   // This function gets key input and

@@ -4,13 +4,17 @@
 #include <vector>
 
 #include "NPC.h"
-#include "Player.h"
+#include "player.h"
 
 class Game {
+  static const int NPC_AMOUNT  = 10;
+  static const int FOOD_AMOUNT = 50;
+
+  static const int WIN_WIDTH  = 500;
+  static const int WIN_HEIGHT = 500;
+
  private:
   int score;
-  int window_size_x;
-  int window_size_y;
   bool start;
   Player player;
   // NPCs and food particles
@@ -18,7 +22,7 @@ class Game {
 
  public:
   void init();
-  void start();
+  void start_game();
   void update();
   void render();
 
