@@ -9,6 +9,7 @@
 Game::Game(){
     srand (time(NULL));
 
+    // initialize blobs with random pos
     auto player = std::make_unique<Player>(Player(3, Vec2(rand() % (int)(WIN_WIDTH/2.0f) + WIN_WIDTH/2.0f, rand() % (int)(WIN_HEIGHT/2.0f) + WIN_HEIGHT/2.0f), Vec2(1, 1), RED));
     blobs.push_back(std::move(player));
 
@@ -29,6 +30,7 @@ void Game::update(){
     for(size_t i = 0; i < blobs.size(); ++i) {
         if (blobs[i]) blobs[i] -> update();
 
+        // check if blob goes outside bound
         if (blobs[i]->get_pos().x - blobs[i]->get_radius() < 0){
             blobs[i]->get_pos().x = blobs[i]->get_radius();
         }
