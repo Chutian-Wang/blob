@@ -9,7 +9,7 @@
 class NPC : Blob {
  public:
   NPC(flaot radius, Vec2 pos, Vec2 velocity, Color color);
-  virtual ~NPC() {};
+  virtual ~NPC(){};
   virtual void render();
   virtual void update(const Game& game);
 };
@@ -17,9 +17,9 @@ class NPC : Blob {
 class Food : Blob {
  public:
   Food(flaot radius, Vec2 pos, Vec2 velocity, Color color);
-  virtual ~Food() {};
+  virtual ~Food(){};
   virtual void render();
-  virtual void update(const Game& game) {};
+  virtual void update(const Game& game){};
 }
 
 #endif  // NPC_H
