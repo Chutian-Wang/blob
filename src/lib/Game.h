@@ -16,9 +16,9 @@ class Game {
  private:
   int score;
   bool start;
-  Player player;
+  std::unique_ptr<Player> player;
   // NPCs and food particles
-  std::vector<Blob> blobs;
+  std::vector<std::unique_ptr<Blob>> blobs;
 
  public:
   void init();
@@ -26,8 +26,8 @@ class Game {
   void update();
   void render();
 
-  const std::vector<Blob>& get_blobs() { return this->blobs; }
-  const Player& get_player() { return this->player; }
+  const std::vector<std::unique_ptr<Blob>>& get_blobs() { return this->blobs; }
+  const std::unique_ptr<Player> get_player() const{ return player.get(); }
 };
 
 #endif  // GAME_H

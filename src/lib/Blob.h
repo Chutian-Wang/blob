@@ -11,7 +11,6 @@ class Blob {
   // squared is equivalent to mass
   float radius;
   Color color;
-  bool is_dead;
 
   Vec2 pos;
   Vec2 velocity;
@@ -27,13 +26,11 @@ class Blob {
 
   virtual const Vec2& get_pos() { return this->pos; }
   virtual const Vec2& get_velocity() { return this->velocity; }
-  virtual const bool& get_survive() { return this->is_dead; }
   virtual float       get_radius() { return this->radius; }
 
   virtual void set_pos(const Vec2& pos) { this->pos = pos; }
   virtual void set_velocity(const Vec2& velocity) { this->velocity = velocity; }
   virtual void set_radius(float radius) { this->radius = radius; }
-  virtual void set_survive(bool survived) { this->is_dead = survived; }
 };
 
 #endif  // BLOB_H

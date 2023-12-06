@@ -4,7 +4,6 @@
 #include "lib/Game.h"
 
 void display();
-void init();
 void reshape();
 
 Game* game = new Game();
