@@ -1,6 +1,7 @@
 #include "Player.h"
 
 #include "Basics.h"
+#include "Controls.h"
 #include "Game.h"
 #include "Vec2.h"
 #include "map"
@@ -8,20 +9,19 @@
 void Player::update(Game& game) {
   // hadle keyboard inputs
   // make sure this is loaded from game
-  std::map<unsigned char, bool> key_states;
 
   // update velocity
   Vec2 acc;
-  if (key_states['w']) {
+  if (Controls::key_states['w']) {
     acc += Vec2(0, 1);
   }
-  if (key_states['s']) {
+  if (Controls::key_states['s']) {
     acc += Vec2(0, -1);
   }
-  if (key_states['d']) {
+  if (Controls::key_states['d']) {
     acc += Vec2(1, 0);
   }
-  if (key_states['a']) {
+  if (Controls::key_states['a']) {
     acc += Vec2(-1, 0);
   }
   acc *= (1 / acc.norm()) * PLAYER_ACCELERATION;
@@ -29,8 +29,8 @@ void Player::update(Game& game) {
 
   // update position
   // make sure these are loaded from game
-  int window_size_x;
-  int window_size_y;
+  int window_size_x = game.get_window_x();
+  int window_size_y = game.get_window_y();
 
   Vec2 pos_next = this->pos + this->velocity;
 
