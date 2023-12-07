@@ -4,12 +4,16 @@
 #include "Blob.h"
 #include "Vec2.h"
 
-#define PLAYER_ACCELERATION 0.1
+class Player : public Blob {
+ private:
+  // squared is equivalent to mass
+  float radius;
+  Color color;
+  Vec2 pos;
+  Vec2 velocity;
 
-class Player : Blob {
  public:
-  Player(float radius, Vec2 pos, Vec2 velocity, Color color)
-      : Blob(radius, pos, velocity, color){};
+  Player(float radius, Vec2 pos, Vec2 velocity, Color color);
   virtual ~Player(){};
   virtual void render();
   // This function gets key input and

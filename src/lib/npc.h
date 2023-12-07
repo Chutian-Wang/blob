@@ -4,7 +4,9 @@
 #include <GL/gl.h>
 #include <GL/glut.h>
 
-#include "Player.h"
+#include "Color.h"
+#include "Blob.h"
+#include "Vec2.h"
 
 #define NPC_ACCELERATION 0.1
 
@@ -17,7 +19,7 @@ class NPC : Blob {
   virtual void update(Game& game);
 };
 
-class Food : Blob {
+class Food : public Blob {
  public:
   Food(float radius, Vec2 pos, Color color)
       : Blob(radius, pos, Vec2(0, 0), color) {}

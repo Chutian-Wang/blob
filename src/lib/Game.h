@@ -4,26 +4,30 @@
 #include <vector>
 
 #include "NPC.h"
-#include "Player.h"
+#include "player.h"
 
 class Game {
+  static const int NPC_AMOUNT  = 10;
+  static const int FOOD_AMOUNT = 50;
+
+  static const int WIN_WIDTH  = 500;
+  static const int WIN_HEIGHT = 500;
+
  private:
   int score;
-  int window_size_x;
-  int window_size_y;
   bool start;
-  Player player;
+  std::unique_ptr<Player> player;
   // NPCs and food particles
-  std::vector<Blob> blobs;
+  std::vector<std::unique_ptr<Blob>> blobs;
 
  public:
   void init();
-  void start();
+  void start_game();
   void update();
   void render();
 
-  std::vector<Blob>& get_blobs() { return this->blobs; }
-  Player& get_player() { return this->player; }
+  const std::vector<std::unique_ptr<Blob>>& get_blobs() { return this->blobs; }
+  const std::unique_ptr<Player> get_player() const{ return player.get(); }
 };
 
 #endif  // GAME_H

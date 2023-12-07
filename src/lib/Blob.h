@@ -2,8 +2,9 @@
 #define BLOB_H
 
 #include "Color.h"
-#include "Game.h"
 #include "Vec2.h"
+
+class Game;
 
 class Blob {
   friend class NPC;
@@ -17,7 +18,6 @@ class Blob {
 
   Vec2 pos;
   Vec2 velocity;
-
  public:
   Blob(float radius, Vec2 pos, Vec2 velocity, Color color)
       : radius(radius), pos(pos), velocity(velocity), color(color){};
@@ -35,6 +35,7 @@ class Blob {
   virtual Vec2 get_velocity() { return this->velocity; }
   virtual void set_pos(const Vec2& pos) { this->pos = pos; }
   virtual void set_velocity(const Vec2& velocity) { this->velocity = velocity; }
+  virtual void set_radius(float radius) { this->radius = radius; }
 };
 
 #endif  // BLOB_H
