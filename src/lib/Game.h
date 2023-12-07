@@ -22,8 +22,8 @@ class Game {
   void update();
   void render();
 
-  const std::vector<Blob>& get_blobs() { return this->blobs; }
-  const Player& get_player() { return this->player; }
+  std::vector<Blob>& get_blobs() { return this->blobs; }
+  Player& get_player() { return this->player; }
 };
 
 #endif  // GAME_H
