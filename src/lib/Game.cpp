@@ -26,26 +26,29 @@ Game::Game() {
   for (int i = 0; i < NPC_AMOUNT; i++) {
     auto npc = std::make_unique<NPC>(
         15,
-        Vec2(WIN_WIDTH * WORLD_SIZE * 2 * ((float)rand() / (float)(RAND_MAX / 1) - 0.5),
-             WIN_HEIGHT * WORLD_SIZE * 2 * ((float)rand() / (float)(RAND_MAX / 1) - 0.5)),
-        Vec2(((float)rand() / (float)(RAND_MAX / 1) - 0.5),
-             ((float)rand() / (float)(RAND_MAX / 1) - 0.5)).normalize(),
+        Vec2(WIN_WIDTH * 2 * ((float)rand() / (float)(RAND_MAX / 1) - 0.5),
+             WIN_HEIGHT * 2 * ((float)rand() / (float)(RAND_MAX / 1) - 0.5)),
+        Vec2(WIN_WIDTH * 2 * ((float)rand() / (float)(RAND_MAX / 1) - 0.5),
+             WIN_HEIGHT * 2 * ((float)rand() / (float)(RAND_MAX / 1) - 0.5))
+            .normalize(),
         BLUE);
     blobs.push_back(std::move(npc));
   }
   for (int i = 0; i < FOOD_AMOUNT; i++) {
     auto food = std::make_unique<Food>(
         10,
-        Vec2(WIN_WIDTH * WORLD_SIZE * 2 * ((float)rand() / (float)(RAND_MAX / 1) - 0.5),
-             WIN_HEIGHT * WORLD_SIZE * 2 * ((float)rand() / (float)(RAND_MAX / 1) - 0.5)),
+        Vec2(WIN_WIDTH * 2 * ((float)rand() / (float)(RAND_MAX / 1) - 0.5),
+             WIN_HEIGHT * 2 * ((float)rand() / (float)(RAND_MAX / 1) - 0.5)),
         GREEN);
     blobs.push_back(std::move(food));
   }
 }
 
 void Game::update() {
+    if (Controls::get_key_state('w')) this->running = true;
+    if (!this->running) return;
     // updates
-    if (!end) {
+    if (!ended) {
     player->update(*this);
     for (auto& blob : blobs) {
         if (blob) blob->update(*this);
@@ -66,8 +69,7 @@ void Game::update() {
             // blob->radius = sqrt((player->radius * player->radius) +
             //                     (blob->radius * blob->radius));
             player->alive = false;
-            player->score = 0;
-            end_game();
+            this->ended = true;
         }
         }
     }
@@ -98,44 +100,25 @@ void Game::update() {
     }
 }
 
-void Game::start_game() {
-  running = true;
-  update();
-}
-
-void Game::end_game() {
-  end = true;
-}
-
 void Game::render() {
   
-  Color textColor = Color(0.0, 0.0, 0.0);
-
+  Color textColor = Color(255, 255, 255);
+  glPushMatrix();
+  glTranslatef(-player->pos.x / 800,
+               -player->pos.y / 800, 0);
   if (!running) {
-    if (Controls::get_key_state('t')) {
-        running = true;
-        movement = true;
+    Basics::drawText("Press w to start...", -0.20, 0, textColor);
+  } 
+  else if (running && !this->ended){
+      if (player) player->render();
+        for (size_t i = 0; i < blobs.size(); i++) {
+            if (blobs[i]) blobs[i]->render();
     }
-    Basics::DrawStartText(0, 0, textColor);
-  } else {
-      if (this->score < 30) {
-        Color textColor = Color(0.0, 0.0, 0.0);
-        std::string score = std::to_string(this->score);
-        Basics::drawText(score, 0, 0, textColor);
-        if (player) player->render();
-            for (size_t i = 0; i < blobs.size(); i++) {
-                if (blobs[i]) blobs[i]->render();
-            }
-      } else {
-          Basics::drawText("You Win!", 0, 0, textColor);
-          movement = false;
-      }
   }
-
-  if (end) {
-    //   std::cout << player->pos.x << player->pos.y << std::endl;
-    //   float fx = (float)player->pos.x/WIN_WIDTH*2-1;
-    //   float fy = (float)player->pos.y/WIN_HEIGHT*2-1;
-      Basics::DrawEndText(0, 0, textColor);
+  else {
+    glPopMatrix();
+    Basics::drawText("Game OVER!", -0.18, 0, textColor);
+    return;
   }
+  glPopMatrix();
 }

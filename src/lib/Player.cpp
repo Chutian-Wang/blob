@@ -7,7 +7,7 @@
 #include "map"
 
 void Player::update(Game& game) {
-    if (game.movement_status()) {
+    if (game.get_game_status()) {
         // hadle keyboard inputs
         // make sure this is loaded from game
 
@@ -31,10 +31,10 @@ void Player::update(Game& game) {
             this->velocity = this->velocity.normalize() * PLAYER_MAX_SPEED;
         }
 
-  // update position
-  // make sure these are loaded from game
-  int window_size_x = game.get_window_x() * WORLD_SIZE;
-  int window_size_y = game.get_window_y() * WORLD_SIZE;
+        // update position
+        // make sure these are loaded from game
+        int window_size_x = game.get_window_x();
+        int window_size_y = game.get_window_y();
 
         Vec2 pos_next = this->pos + this->velocity;
 

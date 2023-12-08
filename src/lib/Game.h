@@ -9,11 +9,9 @@
 #include "NPC.h"
 #include "Player.h"
 
-#define WORLD_SIZE 4
-
 class Game {
-  static const int NPC_AMOUNT = 10;
-  static const int FOOD_AMOUNT = 500;
+  static const int NPC_AMOUNT = 5;
+  static const int FOOD_AMOUNT = 100;
 
   static const int WIN_WIDTH = 800;
   static const int WIN_HEIGHT = 800;
@@ -21,8 +19,7 @@ class Game {
  private:
   int score;
   bool running;
-  bool movement;
-  bool end;
+  bool ended;
   std::unique_ptr<Player> player;
   // NPCs and food particles
   std::vector<std::unique_ptr<Blob>> blobs;
@@ -31,8 +28,6 @@ class Game {
   Game();
   ~Game(){};
   void init();
-  void start_game();
-  void end_game();
   void update();
   void render();
 
@@ -41,7 +36,7 @@ class Game {
 
   constexpr int get_window_x() { return WIN_WIDTH; }
   constexpr int get_window_y() { return WIN_HEIGHT; }
-  bool movement_status() { return movement; }
+  bool get_game_status() {return running; }
 };
 
 #endif  // GAME_H
