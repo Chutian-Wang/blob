@@ -2,7 +2,13 @@
 
 #include <cmath>
 
-float Vec2::norm() { return sqrt(x * x + y * y); }
+float Vec2::norm() { return std::sqrt(x * x + y * y); }
+
+Vec2& Vec2::normalize() {
+  this->x /= this->norm();
+  this->y /= this->norm();
+  return *this;
+}
 
 Vec2& Vec2::negate() {
   this->x = -this->x;

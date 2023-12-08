@@ -8,6 +8,8 @@ struct Vec2 {
   Vec2() : x(0.0f), y(0.0f){};
 
   float norm();
+  // This will normalize self and return self.
+  Vec2& normalize();
   // This will negate self and return self.
   Vec2& negate();
   // all operations supported + - scaler *
