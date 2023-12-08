@@ -43,20 +43,20 @@ void NPC::update(Game& game) {
 
   Vec2 pos_next = this->pos + this->velocity;
 
-  if (pos_next.x + this->radius > window_size_x / 2) {
+  if (pos_next.x + this->radius > window_size_x) {
     pos_next.x = window_size_x - this->radius;
     this->velocity.x = 0;
   }
-  if (pos_next.x - this->radius < -window_size_x / 2) {
-    pos_next.x = this->radius;
+  if (pos_next.x - this->radius < -window_size_x) {
+    pos_next.x = -window_size_x + this->radius;
     this->velocity.x = 0;
   }
-  if (pos_next.y + this->radius > window_size_y / 2) {
+  if (pos_next.y + this->radius > window_size_y) {
     pos_next.y = window_size_y - this->radius;
     this->velocity.y = 0;
   }
-  if (pos_next.y - this->radius < -window_size_y / 2) {
-    pos_next.y = this->radius;
+  if (pos_next.y - this->radius < -window_size_y) {
+    pos_next.y = -window_size_y+this->radius;
     this->velocity.y = 0;
   }
 
