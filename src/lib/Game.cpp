@@ -21,11 +21,11 @@ Game::Game() {
   srand(time(NULL));
 
   // initialize blobs with random pos
-  this->player = std::make_unique<Player>(0.5, Vec2(0, 0), Vec2(0, 0), RED);
+  this->player = std::make_unique<Player>(15, Vec2(0, 0), Vec2(0, 0), RED);
 
   for (int i = 0; i < NPC_AMOUNT; i++) {
     auto npc = std::make_unique<NPC>(
-        0.5,
+        15,
         Vec2(rand() % (int)(WIN_WIDTH / 2.0f) + WIN_WIDTH / 2.0f,
              rand() % (int)(WIN_HEIGHT / 2.0f) + WIN_HEIGHT / 2.0f),
         Vec2(rand() % (int)(WIN_WIDTH / 2.0f) + WIN_WIDTH / 2.0f,
@@ -35,7 +35,7 @@ Game::Game() {
   }
   for (int i = 0; i < FOOD_AMOUNT; i++) {
     auto food = std::make_unique<Food>(
-        0.5,
+        10,
         Vec2(rand() % (int)(WIN_WIDTH / 2.0f) + WIN_WIDTH / 2.0f,
              rand() % (int)(WIN_HEIGHT / 2.0f) + WIN_HEIGHT / 2.0f),
         GREEN);

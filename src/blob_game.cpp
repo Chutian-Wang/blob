@@ -72,7 +72,6 @@ void display() {
 
   // draw all the blobs
   game->render();
-  game->start_game();
 
   // Display the thing drawn
   glutSwapBuffers();
