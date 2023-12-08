@@ -3,6 +3,7 @@
 #include <cmath>
 
 #include "Color.h"
+#include <string>
 #include <iostream>
 
 void Basics::DrawCircle(float x, float y, float radius, const Color& color,
@@ -41,20 +42,30 @@ void Basics::DrawStartText(float x, float y, const Color& color) {
     glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'r');
     glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 't');
 
+    glEnd();
     glFlush();
 }
 
 void Basics::DrawEndText(float x, float y, const Color& color) {
+  glRasterPos2f(x, y);
+  glColor3ub(color.r, color.g, color.b);
+  glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'G');
+  glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'a');
+  glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'm');
+  glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'e');
+  glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'o');
+  glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'v');
+  glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'e');
+  glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'r');
+  glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, '.');
+
+  glFlush();
+}
+
+void Basics::drawText(const std::string& text, float x, float y, const Color& color){
     glColor3ub(color.r, color.g, color.b);
     glRasterPos2f(x, y);
-
-    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'G');
-    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'a');
-    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'm');
-    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'e');
-    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'o');
-    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'v');
-    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'e');
-    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'r');
-    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, '.');
+    for (int i=0; i<text.length(); ++i){
+        glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, text[i]);
+    }
 }

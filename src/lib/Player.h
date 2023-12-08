@@ -5,7 +5,8 @@
 #include "Color.h"
 #include "Vec2.h"
 
-#define PLAYER_ACCELERATION 0.1
+#define PLAYER_ACCELERATION 0.05
+#define PLAYER_MAX_SPEED 10
 
 class Player : public Blob {
  public:

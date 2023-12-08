@@ -35,6 +35,9 @@ void NPC::update(Game& game) {
 
   // Discrete integration
   this->velocity += force;
+  if (this->velocity.norm() > NPC_MAX_SPEED) {
+    this->velocity = this->velocity.normalize() * NPC_MAX_SPEED;
+  }
 
   // Hit walls
 
@@ -56,7 +59,7 @@ void NPC::update(Game& game) {
     this->velocity.y = 0;
   }
   if (pos_next.y - this->radius < -window_size_y) {
-    pos_next.y = -window_size_y+this->radius;
+    pos_next.y = -window_size_y + this->radius;
     this->velocity.y = 0;
   }
 
