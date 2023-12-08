@@ -8,26 +8,17 @@
 #include <vector>
 
 #include "Controls.h"
-#include "npc.h"
-#include "player.h"
+#include "NPC.h"
+#include "Player.h"
 
 Game::Game() {
+  this->score = 0;
+  this->start = false;
+
   srand(time(NULL));
-  // key update related
-  for (int i = 0; i < 256; i++) {
-    Controls::key_states[i] = 0;
-  }
-  // bind callbacks
-  glutKeyboardFunc(Controls::keypress_cb);
-  glutKeyboardUpFunc(Controls::keyup_cb);
 
   // initialize blobs with random pos
-  auto player = std::make_unique<Player>(
-      3,
-      Vec2(rand() % (int)(WIN_WIDTH / 2.0f) + WIN_WIDTH / 2.0f,
-           rand() % (int)(WIN_HEIGHT / 2.0f) + WIN_HEIGHT / 2.0f),
-      Vec2(0, 0), RED);
-  blobs.push_back(std::move(player));
+  this->player = std::make_unique<Player>(3, Vec2(0, 0), Vec2(0, 0), RED);
 
   for (int i = 0; i < NPC_AMOUNT; i++) {
     auto npc = std::make_unique<NPC>(
@@ -51,7 +42,7 @@ void Game::update() {
   // updates
   player->update(*this);
   for (auto& blob : blobs) {
-    blob->update(*this);
+    if (blob) blob->update(*this);
   }
   // collision detection between player and blobs
   for (auto& blob : blobs) {
@@ -62,6 +53,7 @@ void Game::update() {
         // player eats blob
         player->radius = sqrt((player->radius * player->radius) +
                               (blob->radius * blob->radius));
+        this->score += blob->radius;
         blob.reset();
       } else {
         // player dies
@@ -103,8 +95,8 @@ void Game::start_game() {
 }
 
 void Game::render() {
-  player->render();
+  if (player) player->render();
   for (size_t i = 0; i < blobs.size(); i++) {
-    blobs[i]->render();
+    if (blobs[i]) blobs[i]->render();
   }
 }
