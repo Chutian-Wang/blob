@@ -1,5 +1,5 @@
 CXX   	= g++
-CCFLAGS = -std=c++17 -Wall -Wextra -Werror -g
+CCFLAGS = -std=c++17 -Wall -Wextra -Werror -g -Wno-deprecated-declarations
 
 MACINC =  -I/opt/homebrew/include
 
@@ -19,7 +19,8 @@ OBJS = 	$(BUILDDIR)/NPC.o	\
 		$(BUILDDIR)/Player.o\
 		$(BUILDDIR)/Vec2.o  \
 		$(BUILDDIR)/Game.o  \
-		$(BUILDDIR)/Basics.o
+		$(BUILDDIR)/Basics.o \
+		$(BUILDDIR)/Controls.o
 
 .PHONY: clean
 

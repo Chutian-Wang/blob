@@ -25,7 +25,7 @@ class Game {
 
  public:
   Game();
-  ~Game() {};
+  ~Game(){};
   void init();
   void start_game();
   void update();

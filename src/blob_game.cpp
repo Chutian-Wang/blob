@@ -1,14 +1,19 @@
+// #define GL_SILENCE_DEPRECATION
+
+#include <GL/freeglut.h>
 #include <GL/gl.h>
 #include <GL/glut.h>
+
 #include <memory>
 
+#include "lib/Controls.h"
 #include "lib/Game.h"
 
 void init(int argc, char** argv);
 void display();
-void reshape(int w, int h);
+void timer(int);
 
-std::unique_ptr<Game> game = std::make_unique<Game>();
+std::unique_ptr<Game> game;
 
 int main(int argc, char** argv) {
   init(argc, argv);
@@ -19,11 +24,13 @@ void init(int argc, char** argv) {
   // Initialise GLUT with command-line parameters.
   glutInit(&argc, argv);
 
+  game = std::make_unique<Game>();
+
   // Set Display Mode
-  glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+  glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
 
   // Set the window size
-  glutInitWindowSize(500, 500);
+  glutInitWindowSize(800, 800);
 
   // Set the window position
   glutInitWindowPosition(100, 100);
@@ -34,31 +41,47 @@ void init(int argc, char** argv) {
   // Call "display" function
   glutDisplayFunc(display);
 
+  // Gameloop update
+  glutTimerFunc(30, timer, 0);
+
+  // Bind keyboard callbacks
+  glutKeyboardFunc(Controls::keypress_cb);
+  glutKeyboardUpFunc(Controls::keyup_cb);
+
   // Reshape the window
-  glutReshapeFunc(reshape);
+  // glutReshapeFunc(reshape);
 
   // Enter the GLUT event loop
   glutMainLoop();
 }
 
+void timer(int) {
+  game->update();
+  glutPostRedisplay();
+  glutTimerFunc(33, timer, 0);
+}
+
 void display() {
-  if (game == nullptr) {
+  if (!game) {
     return;
   }
   // Clear all pixels
+  glClearColor(0.1, 0.2, 0.1, 1.0);
   glClear(GL_COLOR_BUFFER_BIT);
 
   // draw all the blobs
   game->render();
 
   // Display the thing drawn
-  glFlush();
+  glutSwapBuffers();
 }
 
+/*
 void reshape(int w, int h) {
   glViewport(0, 0, w, h);
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-  gluOrtho2D(0, 500, 500, 0);
+  // gluOrtho2D(0, 500, 500, 0);
   glMatrixMode(GL_MODELVIEW);
 }
+*/
