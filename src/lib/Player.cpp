@@ -60,5 +60,5 @@ void Player::update(Game& game) {
 }
 
 void Player::render() {
-  Basics::DrawCircle(this->pos.x, this->pos.y, this->radius, this->color);
+  Basics::draw_circle(this->pos.x, this->pos.y, this->radius, this->color);
 }

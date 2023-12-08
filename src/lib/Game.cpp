@@ -108,12 +108,12 @@ void Game::render() {
   glPushMatrix();
   glTranslatef(-player->pos.x / 800, -player->pos.y / 800, 0);
   if (!running) {
-    Basics::drawText("Ready?", -0.10, 0.1, textColor);
-    Basics::drawText("Press p to start...", -0.20, 0, textColor);
-    Basics::drawText("Press a to move left", -0.20, -0.1, textColor);
-    Basics::drawText("Press s to move down", -0.20, -0.15, textColor);
-    Basics::drawText("Press d to move right", -0.20, -0.2, textColor);
-    Basics::drawText("Press w to move up", -0.20, -0.25, textColor);
+    Basics::draw_text("Ready?", -0.10, 0.1, textColor);
+    Basics::draw_text("Press p to start...", -0.20, 0, textColor);
+    Basics::draw_text("Press a to move left", -0.20, -0.1, textColor);
+    Basics::draw_text("Press s to move down", -0.20, -0.15, textColor);
+    Basics::draw_text("Press d to move right", -0.20, -0.2, textColor);
+    Basics::draw_text("Press w to move up", -0.20, -0.25, textColor);
     movement = true;
   } else if (running && !this->ended) {
     if (this->score < WIN_SCORE) {
@@ -124,21 +124,21 @@ void Game::render() {
       glPopMatrix();
       std::string score = std::to_string(this->score);
       score = std::string("score: ") + score;
-      Basics::drawText(score, 0.75, 0.9, textColor);
+      Basics::draw_text(score, 0.75, 0.9, textColor);
     } else {
       glPopMatrix();
-      Basics::drawText("You WIN!!", -0.18, 0, textColor);
+      Basics::draw_text("You WIN!!", -0.18, 0, textColor);
       std::string score = std::to_string(this->score);
       std::string text = "Score: " + score;
-      Basics::drawText(text, -0.18, -0.20, textColor);
+      Basics::draw_text(text, -0.18, -0.20, textColor);
       movement = false;
     }
   } else {
     glPopMatrix();
-    Basics::drawText("Game OVER!", -0.18, 0, textColor);
+    Basics::draw_text("Game OVER!", -0.18, 0, textColor);
     std::string score = std::to_string(this->score);
     std::string text = "Score: " + score;
-    Basics::drawText(text, -0.18, -0.20, textColor);
+    Basics::draw_text(text, -0.18, -0.20, textColor);
     return;
   }
   glPopMatrix();

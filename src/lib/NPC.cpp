@@ -5,7 +5,7 @@
 #include "Game.h"
 
 void NPC::render() {
-  Basics::DrawCircle(this->pos.x, this->pos.y, this->radius, this->color);
+  Basics::draw_circle(this->pos.x, this->pos.y, this->radius, this->color);
 }
 
 void NPC::update(Game& game) {
@@ -65,5 +65,5 @@ void NPC::update(Game& game) {
 }
 
 void Food::render() {
-  Basics::DrawCircle(this->pos.x, this->pos.y, this->radius, this->color);
+  Basics::draw_circle(this->pos.x, this->pos.y, this->radius, this->color);
 }

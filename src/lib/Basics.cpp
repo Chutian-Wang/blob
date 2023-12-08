@@ -6,8 +6,8 @@
 
 #include "Color.h"
 
-void Basics::DrawCircle(float x, float y, float radius, const Color& color,
-                        int segments) {
+void Basics::draw_circle(float x, float y, float radius, const Color& color,
+                         int segments) {
   glColor3ub(color.r, color.g, color.b);
   glPushMatrix();
   glTranslatef(x / 800, y / 800, 0);
@@ -23,8 +23,8 @@ void Basics::DrawCircle(float x, float y, float radius, const Color& color,
   glPopMatrix();
 }
 
-void Basics::DrawLine(float x1, float y1, float x2, float y2,
-                      const Color& color) {
+void Basics::draw_line(float x1, float y1, float x2, float y2,
+                       const Color& color) {
   glColor3ub(color.r, color.g, color.b);
   glBegin(GL_LINES);
   glVertex2f(x1, y1);
@@ -32,8 +32,8 @@ void Basics::DrawLine(float x1, float y1, float x2, float y2,
   glEnd();
 }
 
-void Basics::drawText(const std::string& text, float x, float y,
-                      const Color& color) {
+void Basics::draw_text(const std::string& text, float x, float y,
+                       const Color& color) {
   glColor3ub(color.r, color.g, color.b);
   glRasterPos2f(x, y);
   for (size_t i = 0; i < text.length(); ++i) {
