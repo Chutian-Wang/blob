@@ -1,5 +1,6 @@
 #include <GL/gl.h>
 #include <GL/glut.h>
+#include <GLKit/GLKMatrix4.h>
 #include <memory>
 
 #include "lib/Game.h"
@@ -59,6 +60,8 @@ void reshape(int w, int h) {
   glViewport(0, 0, w, h);
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-  gluOrtho2D(0, 500, 500, 0);
+  // gluOrtho2D(0, 500, 500, 0);
+  GLKMatrix4 projectionMatrix = GLKMatrix4MakeOrtho(0, 500, 0, 500, -1, 1);
+  glLoadMatrixf(projectionMatrix.m);
   glMatrixMode(GL_MODELVIEW);
 }

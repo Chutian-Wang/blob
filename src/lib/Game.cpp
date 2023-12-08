@@ -8,8 +8,8 @@
 #include <vector>
 
 #include "Controls.h"
-#include "NPC.h"
-#include "Player.h"
+#include "npc.h"
+#include "player.h"
 
 Game::Game() {
   srand(time(NULL));

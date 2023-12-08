@@ -15,8 +15,8 @@ EXEC = blob_game
 RUN = blob_game
 
 # Put dependent object builds here.
-OBJS = 	$(BUILDDIR)/NPC.o	\
-		$(BUILDDIR)/Player.o\
+OBJS = 	$(BUILDDIR)/npc.o	\
+		$(BUILDDIR)/player.o\
 		$(BUILDDIR)/Vec2.o  \
 		$(BUILDDIR)/Game.o  \
 		$(BUILDDIR)/Basics.o

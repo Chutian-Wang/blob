@@ -6,8 +6,8 @@
 #include <vector>
 
 #include "Blob.h"
-#include "NPC.h"
-#include "Player.h"
+#include "npc.h"
+#include "player.h"
 
 class Game {
   static const int NPC_AMOUNT = 10;

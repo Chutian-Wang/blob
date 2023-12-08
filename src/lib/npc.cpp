@@ -1,4 +1,4 @@
-#include "NPC.h"
+#include "npc.h"
 
 #include "Basics.h"
 #include "Blob.h"
