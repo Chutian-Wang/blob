@@ -116,21 +116,21 @@ void Game::render() {
     Basics::drawText("Press w to move up", -0.20, -0.25, textColor);
     movement = true;
   } else if (running && !this->ended) {
-      if (this->score < WIN_SCORE) {
-        if (player) player->render();
-        for (size_t i = 0; i < blobs.size(); i++) {
+    if (this->score < WIN_SCORE) {
+      if (player) player->render();
+      for (size_t i = 0; i < blobs.size(); i++) {
         if (blobs[i]) blobs[i]->render();
-        }
-        std::string score = std::to_string(this->score);
-        Basics::drawText(score, 0, 0, textColor);
-      } else {
-          glPopMatrix();
-          Basics::drawText("You WIN!!", -0.18, 0, textColor);
-          std::string score = std::to_string(this->score);
-          std::string text = "Score: " + score;
-          Basics::drawText(text, -0.18, -0.20, textColor);
-          movement = false;
       }
+      std::string score = std::to_string(this->score);
+      Basics::drawText(score, 0, 0, textColor);
+    } else {
+      glPopMatrix();
+      Basics::drawText("You WIN!!", -0.18, 0, textColor);
+      std::string score = std::to_string(this->score);
+      std::string text = "Score: " + score;
+      Basics::drawText(text, -0.18, -0.20, textColor);
+      movement = false;
+    }
   } else {
     glPopMatrix();
     Basics::drawText("Game OVER!", -0.18, 0, textColor);
