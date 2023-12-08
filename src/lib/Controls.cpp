@@ -6,7 +6,7 @@ namespace Controls {
 std::map<unsigned char, bool> key_states;
 
 void keypress_cb(unsigned char key, int, int) {
-  std::cout << key << std::endl;
+  //std::cout << key << std::endl;
   key_states[key] = 1;
 }
 
