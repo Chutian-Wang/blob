@@ -62,10 +62,11 @@ void Basics::DrawEndText(float x, float y, const Color& color) {
   glFlush();
 }
 
-void Basics::drawText(const std::string& text, float x, float y, const Color& color){
+void Basics::drawText(const std::string& score, float x, float y, const Color& color){
     glColor3ub(color.r, color.g, color.b);
     glRasterPos2f(x, y);
-    for (int i=0; i<text.length(); ++i){
-        glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, text[i]);
+    int N = score.length();
+    for (int i = 0; i < N; ++i){
+        glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, score[i]);
     }
 }

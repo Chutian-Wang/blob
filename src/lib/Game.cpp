@@ -110,24 +110,32 @@ void Game::end_game() {
 void Game::render() {
   
   Color textColor = Color(0.0, 0.0, 0.0);
-  Basics::DrawStartText(0.5, 0.5, textColor);
 
   if (!running) {
     if (Controls::get_key_state('t')) {
         running = true;
+        movement = true;
     }
     Basics::DrawStartText(0, 0, textColor);
   } else {
-      if (player) player->render();
-        for (size_t i = 0; i < blobs.size(); i++) {
-            if (blobs[i]) blobs[i]->render();
-    }
+      if (this->score < 30) {
+        Color textColor = Color(0.0, 0.0, 0.0);
+        std::string score = std::to_string(this->score);
+        Basics::drawText(score, 0, 0, textColor);
+        if (player) player->render();
+            for (size_t i = 0; i < blobs.size(); i++) {
+                if (blobs[i]) blobs[i]->render();
+            }
+      } else {
+          Basics::drawText("You Win!", 0, 0, textColor);
+          movement = false;
+      }
   }
 
   if (end) {
     //   std::cout << player->pos.x << player->pos.y << std::endl;
     //   float fx = (float)player->pos.x/WIN_WIDTH*2-1;
     //   float fy = (float)player->pos.y/WIN_HEIGHT*2-1;
-      Basics::DrawEndText(player->pos.x, player->pos.y, textColor);
+      Basics::DrawEndText(0, 0, textColor);
   }
 }

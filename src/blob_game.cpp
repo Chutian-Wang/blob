@@ -8,6 +8,8 @@
 
 #include "lib/Controls.h"
 #include "lib/Game.h"
+#include "lib/Color.h"
+#include "lib/Basics.h"
 
 void init(int argc, char** argv);
 void display();

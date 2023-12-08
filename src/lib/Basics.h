@@ -3,6 +3,7 @@
 
 #include <GL/gl.h>
 #include <GL/glut.h>
+#include <string>
 
 #include "Color.h"
 
@@ -12,7 +13,7 @@ void DrawCircle(float x, float y, float radius, const Color& color,
 void DrawLine(float x1, float y1, float x2, float y2, const Color& color);
 void DrawStartText(float x, float y, const Color& color);
 void DrawEndText(float x, float y, const Color& color);
-void drawText(const std::string& test, float x, float y, const Color& color);
+void drawText(const std::string& score, float x, float y, const Color& color);
 }  // namespace Basics
 
 #endif  // BASICS_H

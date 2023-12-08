@@ -7,7 +7,7 @@
 #include "map"
 
 void Player::update(Game& game) {
-    if (game.get_game_status()) {
+    if (game.movement_status()) {
         // hadle keyboard inputs
         // make sure this is loaded from game
 

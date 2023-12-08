@@ -21,6 +21,7 @@ class Game {
  private:
   int score;
   bool running;
+  bool movement;
   bool end;
   std::unique_ptr<Player> player;
   // NPCs and food particles
@@ -40,7 +41,7 @@ class Game {
 
   constexpr int get_window_x() { return WIN_WIDTH; }
   constexpr int get_window_y() { return WIN_HEIGHT; }
-  bool get_game_status() {return running; }
+  bool movement_status() { return movement; }
 };
 
 #endif  // GAME_H
