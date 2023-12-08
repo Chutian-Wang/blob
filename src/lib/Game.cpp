@@ -22,6 +22,8 @@ Game::Game() {
   this->player = std::make_unique<Player>(15, Vec2(0, 0), Vec2(0, 0), RED);
 
   for (int i = 0; i < NPC_AMOUNT; i++) {
+    float rand_x = -WIN_WIDTH + (std::rand() % (WIN_WIDTH*2 + 1));
+    float rand_y = -WIN_HEIGHT + (std::rand() % (WIN_HEIGHT*2 + 1));
     auto npc = std::make_unique<NPC>(
         15,
         Vec2(WIN_WIDTH * 2 * ((float)rand() / (float)(RAND_MAX / 1) - 0.5),
@@ -33,6 +35,8 @@ Game::Game() {
     blobs.push_back(std::move(npc));
   }
   for (int i = 0; i < FOOD_AMOUNT; i++) {
+    float rand_x = -WIN_WIDTH + (std::rand() % (WIN_WIDTH*2 + 1));
+    float rand_y = -WIN_HEIGHT + (std::rand() % (WIN_HEIGHT*2 + 1));
     auto food = std::make_unique<Food>(
         10,
         Vec2(WIN_WIDTH * 2 * ((float)rand() / (float)(RAND_MAX / 1) - 0.5),

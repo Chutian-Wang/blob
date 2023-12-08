@@ -3,6 +3,7 @@
 #include <cmath>
 
 #include "Color.h"
+#include <iostream>
 
 void Basics::DrawCircle(float x, float y, float radius, const Color& color,
                         int segments) {
@@ -21,24 +22,26 @@ void Basics::DrawCircle(float x, float y, float radius, const Color& color,
   glPopMatrix();
 }
 
-// void Basics::DrawLine(float x1, float y1, float x2, float y2, const Color&
-// color) {
-//     glColor3ub(color.r, color.g, color.b);
-//     glBegin(GL_LINES);
-//     glVertex2f(x1, y1);
-//     glVertex2f(x2, y2);
-//     glEnd();
-// }
+void Basics::DrawLine(float x1, float y1, float x2, float y2, const Color&
+color) {
+    glColor3ub(color.r, color.g, color.b);
+    glBegin(GL_LINES);
+    glVertex2f(x1, y1);
+    glVertex2f(x2, y2);
+    glEnd();
+}
 
 void Basics::DrawStartText(float x, float y, const Color& color) {
   glColor3ub(color.r, color.g, color.b);
   glRasterPos2f(x, y);
 
-  glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'S');
-  glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 't');
-  glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'a');
-  glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'r');
-  glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 't');
+    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'S');
+    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 't');
+    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'a');
+    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'r');
+    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 't');
+
+    glFlush();
 }
 
 void Basics::DrawEndText(float x, float y, const Color& color) {
