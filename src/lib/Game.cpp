@@ -10,6 +10,9 @@
 #include "Controls.h"
 #include "npc.h"
 #include "player.h"
+#include "Basics.h"
+
+// std::map<unsigned char, bool> key_states;
 
 Game::Game() {
   srand(time(NULL));
@@ -62,12 +65,14 @@ void Game::update() {
         // player eats blob
         player->radius = sqrt((player->radius * player->radius) +
                               (blob->radius * blob->radius));
+        player->score = player->score + 5;  // constant for now
         blob.reset();
       } else {
         // player dies
         blob->radius = sqrt((player->radius * player->radius) +
                             (blob->radius * blob->radius));
         player->alive = false;
+        player->score = 0;
       }
     }
   }
@@ -106,5 +111,10 @@ void Game::render() {
   player->render();
   for (size_t i = 0; i < blobs.size(); i++) {
     blobs[i]->render();
+  }
+
+  if (!start) {
+    Color textColor = Color (1.0, 1.0, 1.0);
+    Basics::DrawStartText(glutGet(GLUT_WINDOW_WIDTH) / 2, glutGet(GLUT_WINDOW_HEIGHT) / 2, textColor);
   }
 }

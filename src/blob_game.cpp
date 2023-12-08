@@ -1,4 +1,4 @@
-#define GL_SILENCE_DEPRECATION
+// #define GL_SILENCE_DEPRECATION
 
 #include <GL/gl.h>
 #include <GL/glut.h>
@@ -62,6 +62,6 @@ void reshape(int w, int h) {
   glViewport(0, 0, w, h);
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-  gluOrtho2D(0, 500, 500, 0);
+  // gluOrtho2D(0, 500, 500, 0);
   glMatrixMode(GL_MODELVIEW);
 }

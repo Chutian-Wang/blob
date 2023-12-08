@@ -10,9 +10,10 @@
 class Player : public Blob {
  public:
   bool alive;
+  int score;
 
   Player(float radius, Vec2 pos, Vec2 velocity, Color color)
-      : Blob(radius, pos, velocity, color), alive(true){};
+      : Blob(radius, pos, velocity, color), alive(true), score(0){};
   virtual ~Player(){};
   virtual void render();
   // This function gets key input and

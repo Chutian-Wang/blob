@@ -24,7 +24,7 @@ void Basics::DrawCircle(float x, float y, float radius, const Color& color, int 
 //     glEnd();
 // }
 
-void Basics::DrawText(float x, float y, const Color& color) {
+void Basics::DrawStartText(float x, float y, const Color& color) {
     glColor3ub(color.r, color.g, color.b);
     glRasterPos2f(x, y);
 
@@ -33,4 +33,19 @@ void Basics::DrawText(float x, float y, const Color& color) {
     glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'a');
     glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'r');
     glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 't');
+}
+
+void Basics::DrawEndText(float x, float y, const Color& color) {
+    glColor3ub(color.r, color.g, color.b);
+    glRasterPos2f(x, y);
+
+    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'G');
+    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'a');
+    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'm');
+    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'e');
+    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'o');
+    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'v');
+    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'e');
+    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, 'r');
+    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, '.');
 }
