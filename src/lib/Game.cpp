@@ -121,8 +121,10 @@ void Game::render() {
       for (size_t i = 0; i < blobs.size(); i++) {
         if (blobs[i]) blobs[i]->render();
       }
+      glPopMatrix();
       std::string score = std::to_string(this->score);
-      Basics::drawText(score, 0, 0, textColor);
+      score = std::string("score: ") + score;
+      Basics::drawText(score, 0.75, 0.9, textColor);
     } else {
       glPopMatrix();
       Basics::drawText("You WIN!!", -0.18, 0, textColor);
