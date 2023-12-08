@@ -31,10 +31,10 @@ void Player::update(Game& game) {
             this->velocity = this->velocity.normalize() * PLAYER_MAX_SPEED;
         }
 
-        // update position
-        // make sure these are loaded from game
-        int window_size_x = game.get_window_x();
-        int window_size_y = game.get_window_y();
+  // update position
+  // make sure these are loaded from game
+  int window_size_x = game.get_window_x() * WORLD_SIZE;
+  int window_size_y = game.get_window_y() * WORLD_SIZE;
 
         Vec2 pos_next = this->pos + this->velocity;
 
