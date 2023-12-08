@@ -10,6 +10,7 @@
 #include "Controls.h"
 #include "NPC.h"
 #include "Player.h"
+#include "Basics.h"
 
 Game::Game() {
   this->score = 0;
