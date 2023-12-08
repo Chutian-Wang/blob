@@ -1,3 +1,5 @@
+#define GL_SILENCE_DEPRECATION
+
 #include <GL/gl.h>
 #include <GL/glut.h>
 #include <GLKit/GLKMatrix4.h>
@@ -36,7 +38,7 @@ void init(int argc, char** argv) {
   glutDisplayFunc(display);
 
   // Reshape the window
-  glutReshapeFunc(reshape);
+  // glutReshapeFunc(reshape);
 
   // Enter the GLUT event loop
   glutMainLoop();
@@ -56,6 +58,7 @@ void display() {
   glFlush();
 }
 
+/*
 void reshape(int w, int h) {
   glViewport(0, 0, w, h);
   glMatrixMode(GL_PROJECTION);
@@ -65,3 +68,4 @@ void reshape(int w, int h) {
   glLoadMatrixf(projectionMatrix.m);
   glMatrixMode(GL_MODELVIEW);
 }
+*/

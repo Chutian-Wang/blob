@@ -1,5 +1,5 @@
 CXX   	= g++
-CCFLAGS = -std=c++17 -Wall -Wextra -Werror -g
+CCFLAGS = -std=c++17 -Wall -Wextra -Werror -g -Wno-deprecated-declarations
 
 MACINC =  -I/opt/homebrew/include
 
@@ -16,6 +16,7 @@ RUN = blob_game
 
 # Put dependent object builds here.
 OBJS = 	$(BUILDDIR)/npc.o	\
+		$(BUILDDIR)/Controls.o	\
 		$(BUILDDIR)/player.o\
 		$(BUILDDIR)/Vec2.o  \
 		$(BUILDDIR)/Game.o  \

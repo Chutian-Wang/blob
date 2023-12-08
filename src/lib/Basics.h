@@ -6,6 +6,8 @@
 
 #include "Color.h"
 
+#include "Color.h"
+
 namespace Basics {
 void DrawCircle(float x, float y, float radius, const Color& color,
                 int segments = 16);
