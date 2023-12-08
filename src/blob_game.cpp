@@ -68,11 +68,7 @@ void display() {
   glClear(GL_COLOR_BUFFER_BIT);
 
   // draw all the blobs
-  glPushMatrix();
-  glTranslatef(-game->get_player()->pos.x / 800,
-               -game->get_player()->pos.y / 800, 0);
   game->render();
-  glPopMatrix();
   // Display the thing drawn
   glutSwapBuffers();
 }

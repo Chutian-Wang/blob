@@ -45,8 +45,10 @@ Game::Game() {
 }
 
 void Game::update() {
+    if (Controls::get_key_state('w')) this->running = true;
+    if (!this->running) return;
     // updates
-    if (!end) {
+    if (!ended) {
     player->update(*this);
     for (auto& blob : blobs) {
         if (blob) blob->update(*this);
@@ -67,8 +69,7 @@ void Game::update() {
             // blob->radius = sqrt((player->radius * player->radius) +
             //                     (blob->radius * blob->radius));
             player->alive = false;
-            player->score = 0;
-            end_game();
+            this->ended = true;
         }
         }
     }
@@ -99,36 +100,25 @@ void Game::update() {
     }
 }
 
-void Game::start_game() {
-  running = true;
-  update();
-}
-
-void Game::end_game() {
-  end = true;
-}
-
 void Game::render() {
   
-  Color textColor = Color(0.0, 0.0, 0.0);
-  Basics::DrawStartText(0.5, 0.5, textColor);
-
+  Color textColor = Color(255, 255, 255);
+  glPushMatrix();
+  glTranslatef(-player->pos.x / 800,
+               -player->pos.y / 800, 0);
   if (!running) {
-    if (Controls::get_key_state('t')) {
-        running = true;
-    }
-    Basics::DrawStartText(0, 0, textColor);
-  } else {
+    Basics::drawText("Press w to start...", -0.20, 0, textColor);
+  } 
+  else if (running && !this->ended){
       if (player) player->render();
         for (size_t i = 0; i < blobs.size(); i++) {
             if (blobs[i]) blobs[i]->render();
     }
   }
-
-  if (end) {
-    //   std::cout << player->pos.x << player->pos.y << std::endl;
-    //   float fx = (float)player->pos.x/WIN_WIDTH*2-1;
-    //   float fy = (float)player->pos.y/WIN_HEIGHT*2-1;
-      Basics::DrawEndText(player->pos.x, player->pos.y, textColor);
+  else {
+    glPopMatrix();
+    Basics::drawText("Game OVER!", -0.18, 0, textColor);
+    return;
   }
+  glPopMatrix();
 }

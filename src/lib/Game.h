@@ -19,7 +19,7 @@ class Game {
  private:
   int score;
   bool running;
-  bool end;
+  bool ended;
   std::unique_ptr<Player> player;
   // NPCs and food particles
   std::vector<std::unique_ptr<Blob>> blobs;
@@ -28,8 +28,6 @@ class Game {
   Game();
   ~Game(){};
   void init();
-  void start_game();
-  void end_game();
   void update();
   void render();
 
