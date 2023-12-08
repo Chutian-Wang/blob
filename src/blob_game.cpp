@@ -11,6 +11,7 @@
 
 void init(int argc, char** argv);
 void display();
+void reshape(int w, int h);
 void timer(int);
 
 std::unique_ptr<Game> game;
@@ -77,12 +78,12 @@ void display() {
   glutSwapBuffers();
 }
 
-/*
 void reshape(int w, int h) {
+  int x = game->get_window_x();
+  int y = game->get_window_y();
   glViewport(0, 0, w, h);
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-  // gluOrtho2D(0, 500, 500, 0);
+  glOrtho(0, x, y, 0, 0, 1);
   glMatrixMode(GL_MODELVIEW);
 }
-*/

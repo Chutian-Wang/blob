@@ -28,7 +28,9 @@ Game::Game() {
         0.5,
         Vec2(rand() % (int)(WIN_WIDTH / 2.0f) + WIN_WIDTH / 2.0f,
              rand() % (int)(WIN_HEIGHT / 2.0f) + WIN_HEIGHT / 2.0f),
-        Vec2(0, 0), BLUE);
+        Vec2(rand() % (int)(WIN_WIDTH / 2.0f) + WIN_WIDTH / 2.0f,
+             rand() % (int)(WIN_HEIGHT / 2.0f) + WIN_HEIGHT / 2.0f).normalize(),
+        BLUE);
     blobs.push_back(std::move(npc));
   }
   for (int i = 0; i < FOOD_AMOUNT; i++) {

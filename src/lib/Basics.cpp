@@ -7,15 +7,18 @@
 void Basics::DrawCircle(float x, float y, float radius, const Color& color,
                         int segments) {
   glColor3ub(color.r, color.g, color.b);
+  glPushMatrix();
+  glTranslatef(x / 800, y / 800, 0);
   glBegin(GL_TRIANGLE_FAN);
 
   for (int i = 0; i <= segments; ++i) {
     float theta = 2.0f * 3.141592653f * float(i) / float(segments);
     float dx = radius * cosf(theta);
     float dy = radius * sinf(theta);
-    glVertex2f(x + dx, y + dy);
+    glVertex2f(dx / 800, dy / 800);
   }
   glEnd();
+  glPopMatrix();
 }
 
 // void Basics::DrawLine(float x1, float y1, float x2, float y2, const Color&
