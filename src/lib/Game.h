@@ -6,15 +6,15 @@
 #include <vector>
 
 #include "Blob.h"
-#include "npc.h"
-#include "player.h"
+#include "NPC.h"
+#include "Player.h"
 
 class Game {
   static const int NPC_AMOUNT = 10;
   static const int FOOD_AMOUNT = 50;
 
-  static const int WIN_WIDTH = 500;
-  static const int WIN_HEIGHT = 500;
+  static const int WIN_WIDTH = 800;
+  static const int WIN_HEIGHT = 800;
 
  private:
   int score;
@@ -25,7 +25,7 @@ class Game {
 
  public:
   Game();
-  ~Game() {};
+  ~Game(){};
   void init();
   void start_game();
   void update();
