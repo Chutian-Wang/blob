@@ -1,10 +1,10 @@
 #include "Basics.h"
 
 #include <cmath>
+#include <iostream>
+#include <string>
 
 #include "Color.h"
-#include <string>
-#include <iostream>
 
 void Basics::DrawCircle(float x, float y, float radius, const Color& color,
                         int segments) {
@@ -23,19 +23,20 @@ void Basics::DrawCircle(float x, float y, float radius, const Color& color,
   glPopMatrix();
 }
 
-void Basics::DrawLine(float x1, float y1, float x2, float y2, const Color&
-color) {
-    glColor3ub(color.r, color.g, color.b);
-    glBegin(GL_LINES);
-    glVertex2f(x1, y1);
-    glVertex2f(x2, y2);
-    glEnd();
+void Basics::DrawLine(float x1, float y1, float x2, float y2,
+                      const Color& color) {
+  glColor3ub(color.r, color.g, color.b);
+  glBegin(GL_LINES);
+  glVertex2f(x1, y1);
+  glVertex2f(x2, y2);
+  glEnd();
 }
 
-void Basics::drawText(const std::string& text, float x, float y, const Color& color){
-    glColor3ub(color.r, color.g, color.b);
-    glRasterPos2f(x, y);
-    for (size_t i=0; i<text.length(); ++i){
-        glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, text[i]);
-    }
+void Basics::drawText(const std::string& text, float x, float y,
+                      const Color& color) {
+  glColor3ub(color.r, color.g, color.b);
+  glRasterPos2f(x, y);
+  for (size_t i = 0; i < text.length(); ++i) {
+    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, text[i]);
+  }
 }
