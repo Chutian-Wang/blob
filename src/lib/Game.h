@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "Player.h"
-#include "NPC.h"
+#include "npc.h"
 
 class Game {
  private:
