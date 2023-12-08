@@ -36,19 +36,19 @@ void Player::update(Game& game) {
 
   // hit walls
   if (pos_next.x + this->radius > window_size_x / 2) {
-    pos_next.x = window_size_x - this->radius;
+    pos_next.x = window_size_x / 2 - this->radius;
     this->velocity.x = 0;
   }
   if (pos_next.x - this->radius < -window_size_x / 2) {
-    pos_next.x = this->radius;
+    pos_next.x = - window_size_x / 2 + this->radius;
     this->velocity.x = 0;
   }
   if (pos_next.y + this->radius > window_size_y / 2) {
-    pos_next.y = window_size_y - this->radius;
+    pos_next.y = window_size_y / 2 - this->radius;
     this->velocity.y = 0;
   }
   if (pos_next.y - this->radius < -window_size_y / 2) {
-    pos_next.y = this->radius;
+    pos_next.y = - window_size_y / 2 + this->radius;
     this->velocity.y = 0;
   }
 
