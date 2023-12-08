@@ -11,7 +11,7 @@
 
 class Game {
   static const int NPC_AMOUNT = 10;
-  static const int FOOD_AMOUNT = 50;
+  static const int FOOD_AMOUNT = 5;
 
   static const int WIN_WIDTH = 500;
   static const int WIN_HEIGHT = 500;

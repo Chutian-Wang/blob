@@ -12,6 +12,8 @@
 #include "Player.h"
 #include "Basics.h"
 
+#include <iostream>
+
 Game::Game() {
   this->score = 0;
   this->start = false;
@@ -19,11 +21,11 @@ Game::Game() {
   srand(time(NULL));
 
   // initialize blobs with random pos
-  this->player = std::make_unique<Player>(3, Vec2(0, 0), Vec2(0, 0), RED);
+  this->player = std::make_unique<Player>(0.5, Vec2(0, 0), Vec2(0, 0), RED);
 
   for (int i = 0; i < NPC_AMOUNT; i++) {
     auto npc = std::make_unique<NPC>(
-        3,
+        0.5,
         Vec2(rand() % (int)(WIN_WIDTH / 2.0f) + WIN_WIDTH / 2.0f,
              rand() % (int)(WIN_HEIGHT / 2.0f) + WIN_HEIGHT / 2.0f),
         Vec2(0, 0), BLUE);
@@ -31,7 +33,7 @@ Game::Game() {
   }
   for (int i = 0; i < FOOD_AMOUNT; i++) {
     auto food = std::make_unique<Food>(
-        1,
+        0.5,
         Vec2(rand() % (int)(WIN_WIDTH / 2.0f) + WIN_WIDTH / 2.0f,
              rand() % (int)(WIN_HEIGHT / 2.0f) + WIN_HEIGHT / 2.0f),
         GREEN);
@@ -99,7 +101,8 @@ void Game::start_game() {
 void Game::render() {
   if (player) player->render();
   for (size_t i = 0; i < blobs.size(); i++) {
-    if (blobs[i]) blobs[i]->render();
+    if (blobs[i]) {blobs[i]->render();
+    std::cout << blobs.size()<<std::endl;}
   }
 
   if (!start) {
