@@ -1,4 +1,4 @@
-#include "player.h"
+#include "Player.h"
 
 #include "Basics.h"
 #include "Controls.h"
@@ -12,19 +12,19 @@ void Player::update(Game& game) {
 
   // update velocity
   Vec2 acc;
-  if (Controls::key_states['w']) {
+  if (Controls::get_key_state('w')) {
     acc += Vec2(0, 1);
   }
-  if (Controls::key_states['s']) {
+  if (Controls::get_key_state('s')) {
     acc += Vec2(0, -1);
   }
-  if (Controls::key_states['d']) {
+  if (Controls::get_key_state('d')) {
     acc += Vec2(1, 0);
   }
-  if (Controls::key_states['a']) {
+  if (Controls::get_key_state('a')) {
     acc += Vec2(-1, 0);
   }
-  acc *= (1 / acc.norm()) * PLAYER_ACCELERATION;
+  if (acc.x != 0 && acc.y != 0) acc *= (1 / acc.norm()) * PLAYER_ACCELERATION;
   this->velocity += acc;
 
   // update position
@@ -35,19 +35,19 @@ void Player::update(Game& game) {
   Vec2 pos_next = this->pos + this->velocity;
 
   // hit walls
-  if (pos_next.x + this->radius > window_size_x) {
+  if (pos_next.x + this->radius > window_size_x / 2) {
     pos_next.x = window_size_x - this->radius;
     this->velocity.x = 0;
   }
-  if (pos_next.x - this->radius < 0) {
+  if (pos_next.x - this->radius < -window_size_x / 2) {
     pos_next.x = this->radius;
     this->velocity.x = 0;
   }
-  if (pos_next.y + this->radius > window_size_y) {
+  if (pos_next.y + this->radius > window_size_y / 2) {
     pos_next.y = window_size_y - this->radius;
     this->velocity.y = 0;
   }
-  if (pos_next.y - this->radius < 0) {
+  if (pos_next.y - this->radius < -window_size_y / 2) {
     pos_next.y = this->radius;
     this->velocity.y = 0;
   }

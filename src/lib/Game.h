@@ -6,8 +6,8 @@
 #include <vector>
 
 #include "Blob.h"
-#include "npc.h"
-#include "player.h"
+#include "NPC.h"
+#include "Player.h"
 
 class Game {
   static const int NPC_AMOUNT = 10;
@@ -25,7 +25,7 @@ class Game {
 
  public:
   Game();
-  ~Game() {};
+  ~Game(){};
   void init();
   void start_game();
   void update();

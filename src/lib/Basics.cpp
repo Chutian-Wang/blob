@@ -1,22 +1,25 @@
 #include "Basics.h"
-#include "Color.h"
 
 #include <cmath>
 
-void Basics::DrawCircle(float x, float y, float radius, const Color& color, int segments) {
-    glColor3ub(color.r, color.g, color.b);
-    glBegin(GL_TRIANGLE_FAN);
+#include "Color.h"
 
-    for (int i = 0; i <= segments; ++i) {
-        float theta = 2.0f * 3.141592653f * float(i) / float(segments);
-        float dx = radius * cosf(theta);
-        float dy = radius * sinf(theta);
-        glVertex2f(x + dx, y + dy);
-    }
-    glEnd();
+void Basics::DrawCircle(float x, float y, float radius, const Color& color,
+                        int segments) {
+  glColor3ub(color.r, color.g, color.b);
+  glBegin(GL_TRIANGLE_FAN);
+
+  for (int i = 0; i <= segments; ++i) {
+    float theta = 2.0f * 3.141592653f * float(i) / float(segments);
+    float dx = radius * cosf(theta);
+    float dy = radius * sinf(theta);
+    glVertex2f(x + dx, y + dy);
+  }
+  glEnd();
 }
-    
-// void Basics::DrawLine(float x1, float y1, float x2, float y2, const Color& color) {
+
+// void Basics::DrawLine(float x1, float y1, float x2, float y2, const Color&
+// color) {
 //     glColor3ub(color.r, color.g, color.b);
 //     glBegin(GL_LINES);
 //     glVertex2f(x1, y1);
