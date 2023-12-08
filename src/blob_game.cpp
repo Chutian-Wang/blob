@@ -38,7 +38,7 @@ void init(int argc, char** argv) {
   glutDisplayFunc(display);
 
   // Reshape the window
-  // glutReshapeFunc(reshape);
+  glutReshapeFunc(reshape);
 
   // Enter the GLUT event loop
   glutMainLoop();
@@ -58,7 +58,6 @@ void display() {
   glFlush();
 }
 
-/*
 void reshape(int w, int h) {
   glViewport(0, 0, w, h);
   glMatrixMode(GL_PROJECTION);
@@ -66,4 +65,3 @@ void reshape(int w, int h) {
   gluOrtho2D(0, 500, 500, 0);
   glMatrixMode(GL_MODELVIEW);
 }
-*/

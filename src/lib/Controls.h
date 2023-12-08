@@ -7,11 +7,11 @@
 #include <map>
 
 namespace Controls {
-extern std::map<unsigned char, bool> key_states;
+std::map<unsigned char, bool> key_states;
 
-void keypress_cb(unsigned char key, int, int);
+void keypress_cb(unsigned char key, int, int) { key_states[key] = 1; }
 
-void keyup_cb(unsigned char key, int, int);
+void keyup_cb(unsigned char key, int, int) { key_states[key] = 0; }
 }  // namespace Controls
 
 #endif  // CONTROLS_H
