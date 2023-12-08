@@ -6,15 +6,17 @@
 
 #include <cmath>
 #include <vector>
+#include <iostream>
 
 #include "Basics.h"
 #include "Controls.h"
 #include "NPC.h"
 #include "Player.h"
 
+
 Game::Game() {
   this->score = 0;
-  this->start = false;
+  this->running = false;
 
   srand(time(NULL));
 
@@ -42,71 +44,80 @@ Game::Game() {
 }
 
 void Game::update() {
-  // updates
-  player->update(*this);
-  for (auto& blob : blobs) {
-    if (blob) blob->update(*this);
-  }
-  // collision detection between player and blobs
-  for (auto& blob : blobs) {
-    if (!blob) continue;
-    if ((player->pos - blob->pos).norm() < player->radius + blob->radius) {
-      // collision!
-      if (player->radius > blob->radius) {
-        // player eats blob
-        player->radius = sqrt((player->radius * player->radius) +
-                              (blob->radius * blob->radius));
-        this->score += blob->radius;
-        blob.reset();
-      } else {
-        // player dies
-        blob->radius = sqrt((player->radius * player->radius) +
-                            (blob->radius * blob->radius));
-        player->alive = false;
-        player->score = 0;
-      }
+    if (Controls::get_key_state('w')) this->running = true;
+    if (!this->running) return;
+    // updates
+    if (!ended) {
+    player->update(*this);
+    for (auto& blob : blobs) {
+        if (blob) blob->update(*this);
     }
-  }
-
-  // collision detection between blobs;
-  for (size_t i = 0; i < blobs.size(); ++i) {
-    for (size_t j = 0; j < blobs.size(); ++j) {
-      // check if nullptr
-      if (i == j) continue;
-      if (blobs[i] && blobs[j]) {
-        if ((blobs[i]->pos - blobs[j]->pos).norm() <
-            blobs[i]->radius + blobs[j]->radius) {
-          if (blobs[i]->radius < blobs[j]->radius) {
-            // update survivor size
-            blobs[j]->radius = sqrt((blobs[i]->radius * blobs[i]->radius) +
-                                    (blobs[j]->radius * blobs[j]->radius));
-            blobs[i].reset();
-          } else {
-            // update survivor size
-            blobs[i]->radius = sqrt((blobs[i]->radius * blobs[i]->radius) +
-                                    (blobs[j]->radius * blobs[j]->radius));
-            blobs[j].reset();
-          }
+    // collision detection between player and blobs
+    for (auto& blob : blobs) {
+        if (!blob) continue;
+        if ((player->pos - blob->pos).norm() < player->radius + blob->radius) {
+        // collision!
+        if (player->radius > blob->radius) {
+            // player eats blob
+            player->radius = sqrt((player->radius * player->radius) +
+                                (blob->radius * blob->radius));
+            this->score += blob->radius;
+            blob.reset();
+        } else {
+            // player dies
+            // blob->radius = sqrt((player->radius * player->radius) +
+            //                     (blob->radius * blob->radius));
+            player->alive = false;
+            this->ended = true;
         }
-      }
+        }
     }
-  }
-}
 
-void Game::start_game() {
-  start = true;
-  update();
+    // collision detection between blobs;
+    for (size_t i = 0; i < blobs.size(); ++i) {
+        for (size_t j = 0; j < blobs.size(); ++j) {
+        // check if nullptr
+        if (i == j) continue;
+        if (blobs[i] && blobs[j]) {
+            if ((blobs[i]->pos - blobs[j]->pos).norm() <
+                blobs[i]->radius + blobs[j]->radius) {
+            if (blobs[i]->radius < blobs[j]->radius) {
+                // update survivor size
+                blobs[j]->radius = sqrt((blobs[i]->radius * blobs[i]->radius) +
+                                        (blobs[j]->radius * blobs[j]->radius));
+                blobs[i].reset();
+            } else {
+                // update survivor size
+                blobs[i]->radius = sqrt((blobs[i]->radius * blobs[i]->radius) +
+                                        (blobs[j]->radius * blobs[j]->radius));
+                blobs[j].reset();
+            }
+            }
+        }
+        }
+    }
+    }
 }
 
 void Game::render() {
-  if (player) player->render();
-  for (size_t i = 0; i < blobs.size(); i++) {
-    if (blobs[i]) blobs[i]->render();
+  
+  Color textColor = Color(255, 255, 255);
+  glPushMatrix();
+  glTranslatef(-player->pos.x / 800,
+               -player->pos.y / 800, 0);
+  if (!running) {
+    Basics::drawText("Press w to start...", -0.20, 0, textColor);
+  } 
+  else if (running && !this->ended){
+      if (player) player->render();
+        for (size_t i = 0; i < blobs.size(); i++) {
+            if (blobs[i]) blobs[i]->render();
+    }
   }
-
-  if (!start) {
-    Color textColor = Color(1.0, 1.0, 1.0);
-    Basics::DrawStartText(glutGet(GLUT_WINDOW_WIDTH) / 2,
-                          glutGet(GLUT_WINDOW_HEIGHT) / 2, textColor);
+  else {
+    glPopMatrix();
+    Basics::drawText("Game OVER!", -0.18, 0, textColor);
+    return;
   }
+  glPopMatrix();
 }

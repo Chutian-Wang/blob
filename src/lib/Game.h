@@ -20,7 +20,8 @@ class Game {
 
  private:
   int score;
-  bool start;
+  bool running;
+  bool ended;
   std::unique_ptr<Player> player;
   // NPCs and food particles
   std::vector<std::unique_ptr<Blob>> blobs;
@@ -29,7 +30,6 @@ class Game {
   Game();
   ~Game(){};
   void init();
-  void start_game();
   void update();
   void render();
 
@@ -38,6 +38,7 @@ class Game {
 
   constexpr int get_window_x() { return WIN_WIDTH; }
   constexpr int get_window_y() { return WIN_HEIGHT; }
+  bool get_game_status() {return running; }
 };
 
 #endif  // GAME_H
