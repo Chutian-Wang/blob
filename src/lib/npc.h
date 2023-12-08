@@ -4,22 +4,28 @@
 #include <GL/gl.h>
 #include <GL/glut.h>
 
-#include "Player.h"
+#include "Blob.h"
+#include "Color.h"
+#include "Vec2.h"
 
-class NPC : Blob {
+#define NPC_ACCELERATION 0.1
+
+class NPC : public Blob {
  public:
-  NPC(flaot radius, Vec2 pos, Vec2 velocity, Color color);
-  virtual ~NPC() {};
+  NPC(float radius, Vec2 pos, Vec2 velocity, Color color)
+      : Blob(radius, pos, velocity, color) {}
+  virtual ~NPC(){};
   virtual void render();
-  virtual void update(const Game& game);
+  virtual void update(Game& game);
 };
 
-class Food : Blob {
+class Food : public Blob {
  public:
-  Food(flaot radius, Vec2 pos, Vec2 velocity, Color color);
-  virtual ~Food() {};
+  Food(float radius, Vec2 pos, Color color)
+      : Blob(radius, pos, Vec2(0, 0), color) {}
+  virtual ~Food(){};
   virtual void render();
-  virtual void update(const Game& game) {};
-}
+  virtual void update(Game&){};
+};
 
 #endif  // NPC_H

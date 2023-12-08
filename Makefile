@@ -1,5 +1,5 @@
 CXX   	= g++
-CCFLAGS = -std=c++17 -Wall -Wextra -Werror -g
+CCFLAGS = -std=c++17 -Wall -Wextra -Werror -g -Wno-deprecated-declarations
 
 MACINC =  -I/opt/homebrew/include
 
