@@ -41,8 +41,8 @@ void NPC::update(Game& game) {
 
   // Hit walls
 
-  int window_size_x = game.get_window_x();
-  int window_size_y = game.get_window_y();
+  int window_size_x =  game.get_window_x() * WORLD_SIZE;
+  int window_size_y = game.get_window_y() * WORLD_SIZE;
 
   Vec2 pos_next = this->pos + this->velocity;
 
