@@ -26,6 +26,9 @@ void Player::update(Game& game) {
   }
   if (acc.x != 0 && acc.y != 0) acc *= (1 / acc.norm()) * PLAYER_ACCELERATION;
   this->velocity += acc;
+  if (this->velocity.norm() > PLAYER_MAX_SPEED) {
+    this->velocity = this->velocity.normalize() * PLAYER_MAX_SPEED;
+  }
 
   // update position
   // make sure these are loaded from game
@@ -48,7 +51,7 @@ void Player::update(Game& game) {
     this->velocity.y = 0;
   }
   if (pos_next.y - this->radius < -window_size_y) {
-    pos_next.y = -window_size_y+this->radius;
+    pos_next.y = -window_size_y + this->radius;
     this->velocity.y = 0;
   }
 

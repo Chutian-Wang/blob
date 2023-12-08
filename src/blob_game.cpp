@@ -49,9 +49,6 @@ void init(int argc, char** argv) {
   glutKeyboardFunc(Controls::keypress_cb);
   glutKeyboardUpFunc(Controls::keyup_cb);
 
-  // Reshape the window
-  // glutReshapeFunc(reshape);
-
   // Enter the GLUT event loop
   glutMainLoop();
 }
@@ -71,18 +68,11 @@ void display() {
   glClear(GL_COLOR_BUFFER_BIT);
 
   // draw all the blobs
+  glPushMatrix();
+  glTranslatef(-game->get_player()->pos.x / 800,
+               -game->get_player()->pos.y / 800, 0);
   game->render();
-
+  glPopMatrix();
   // Display the thing drawn
   glutSwapBuffers();
-}
-
-void reshape(int w, int h) {
-  int x = game->get_window_x();
-  int y = game->get_window_y();
-  glViewport(0, 0, w, h);
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();
-  glOrtho(0, x, y, 0, 0, 1);
-  glMatrixMode(GL_MODELVIEW);
 }

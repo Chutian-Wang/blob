@@ -7,12 +7,10 @@
 #include <cmath>
 #include <vector>
 
+#include "Basics.h"
 #include "Controls.h"
 #include "NPC.h"
 #include "Player.h"
-#include "Basics.h"
-
-#include <iostream>
 
 Game::Game() {
   this->score = 0;
@@ -26,18 +24,19 @@ Game::Game() {
   for (int i = 0; i < NPC_AMOUNT; i++) {
     auto npc = std::make_unique<NPC>(
         15,
-        Vec2(rand() % (int)(WIN_WIDTH / 2.0f) + WIN_WIDTH / 2.0f,
-             rand() % (int)(WIN_HEIGHT / 2.0f) + WIN_HEIGHT / 2.0f),
-        Vec2(rand() % (int)(WIN_WIDTH / 2.0f) + WIN_WIDTH / 2.0f,
-             rand() % (int)(WIN_HEIGHT / 2.0f) + WIN_HEIGHT / 2.0f).normalize(),
+        Vec2(WIN_WIDTH * 2 * ((float)rand() / (float)(RAND_MAX / 1) - 0.5),
+             WIN_HEIGHT * 2 * ((float)rand() / (float)(RAND_MAX / 1) - 0.5)),
+        Vec2(WIN_WIDTH * 2 * ((float)rand() / (float)(RAND_MAX / 1) - 0.5),
+             WIN_HEIGHT * 2 * ((float)rand() / (float)(RAND_MAX / 1) - 0.5))
+            .normalize(),
         BLUE);
     blobs.push_back(std::move(npc));
   }
   for (int i = 0; i < FOOD_AMOUNT; i++) {
     auto food = std::make_unique<Food>(
         10,
-        Vec2(rand() % (int)(WIN_WIDTH / 2.0f) + WIN_WIDTH / 2.0f,
-             rand() % (int)(WIN_HEIGHT / 2.0f) + WIN_HEIGHT / 2.0f),
+        Vec2(WIN_WIDTH * 2 * ((float)rand() / (float)(RAND_MAX / 1) - 0.5),
+             WIN_HEIGHT * 2 * ((float)rand() / (float)(RAND_MAX / 1) - 0.5)),
         GREEN);
     blobs.push_back(std::move(food));
   }
@@ -103,12 +102,12 @@ void Game::start_game() {
 void Game::render() {
   if (player) player->render();
   for (size_t i = 0; i < blobs.size(); i++) {
-    if (blobs[i]) {blobs[i]->render();
-    std::cout << blobs.size()<<std::endl;}
+    if (blobs[i]) blobs[i]->render();
   }
 
   if (!start) {
-    Color textColor = Color (1.0, 1.0, 1.0);
-    Basics::DrawStartText(glutGet(GLUT_WINDOW_WIDTH) / 2, glutGet(GLUT_WINDOW_HEIGHT) / 2, textColor);
+    Color textColor = Color(1.0, 1.0, 1.0);
+    Basics::DrawStartText(glutGet(GLUT_WINDOW_WIDTH) / 2,
+                          glutGet(GLUT_WINDOW_HEIGHT) / 2, textColor);
   }
 }
