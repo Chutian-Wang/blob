@@ -38,7 +38,7 @@ class Game {
 
   constexpr int get_window_x() { return WIN_WIDTH; }
   constexpr int get_window_y() { return WIN_HEIGHT; }
-  bool get_game_status() {return running; }
+  bool get_game_status() { return running; }
 };
 
 #endif  // GAME_H

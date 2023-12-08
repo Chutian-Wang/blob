@@ -8,8 +8,8 @@
 #include "Color.h"
 #include "Vec2.h"
 
-#define NPC_ACCELERATION 0.03
-#define NPC_MAX_SPEED 7
+#define NPC_ACCELERATION 0.5
+#define NPC_DRAG_COEFF 0.1
 
 class NPC : public Blob {
  public:

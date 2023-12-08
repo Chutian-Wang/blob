@@ -6,7 +6,7 @@
 #include "Vec2.h"
 
 #define PLAYER_ACCELERATION 0.05
-#define PLAYER_MAX_SPEED 10
+#define PLAYER_DRAG_COEFF 0.1
 
 class Player : public Blob {
  public:
