@@ -1,23 +1,26 @@
 CXX   	= g++
-CCFLAGS = -std=c++17 -Wall -Wextra -Werror -g \
--Wno-error=unused-command-line-argument
+CCFLAGS = -std=c++17 -Wall -Wextra -Werror -g -Wno-deprecated-declarations
 
 MACINC =  -I/opt/homebrew/include
 
-LINKFLAGS = -L/opt/homebrew/lib -lGL -lglut 
+LINKFLAGS = -L/opt/homebrew/lib -lGL -lglut
 
 
 # Build directory must be created before running make.
 BUILDDIR = build
 
 # Put test executables and main executable here
-EXEC = hello_openGL
+EXEC = blob_game
 
-RUN = hello_openGL
+RUN = blob_game
 
 # Put dependent object builds here.
-OBJS = 	$(BUILDDIR)/npc.o	\
-		$(BUILDDIR)/player.o\
+OBJS = 	$(BUILDDIR)/NPC.o	\
+		$(BUILDDIR)/Player.o\
+		$(BUILDDIR)/Vec2.o  \
+		$(BUILDDIR)/Game.o  \
+		$(BUILDDIR)/Basics.o \
+		$(BUILDDIR)/Controls.o
 
 .PHONY: clean
 

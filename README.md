@@ -19,7 +19,7 @@
 
 > You will need all the packages installed first if you are on MacOS, refer to [Libraries](#libraries) section.
 
-Make a build folder by running `mkdir build`.
+**Make a build folder by running `mkdir build`.**
 
 For MacOS
 
@@ -45,14 +45,63 @@ code segfaults. `leaks` comes with OSX after 2020.
 ## File Structure
 
 ```
-TBD
+blob
+├── LICENSE
+├── Makefile
+├── README.md
+├── assets
+├── build
+└── src
+    ├── blob_game.cpp
+    └── lib
+        ├── Basics.cpp
+        ├── Basics.h
+        ├── Blob.h
+        ├── Color.h
+        ├── Controls.cpp
+        ├── Controls.h
+        ├── Game.cpp
+        ├── Game.h
+        ├── NPC.cpp
+        ├── NPC.h
+        ├── Player.cpp
+        ├── Player.h
+        ├── Vec2.cpp
+        └── Vec2.h
 ```
 
-## Class Structure and Special Macros
+## Class Structure, Special Macros, and namespace
 
 ```
-TBD
+namespace Basics
+├── draw_circle()
+├── draw_line()
+└── draw_text()
+
+namespace Controls
+├── std::map<unsigned char, bool> key_states // reserved
+├── keypress_cb() // reserved
+├── keyup_cb()    // reserved
+└── get_key_state()
+
+class Game
+
+class Blob
+├── class Player    : public Blob
+├── class NPC       : public Blob
+└── class Food      : public Blob
+
+struct Color
+├── int r
+├── int g
+└── int b
+
+struct Vec2
+├── float x
+└── float y
 ```
+
+Vec2 supports most 2D vector operations. See Vec2.h for details of supported functions.
 
 ## Code Format
 
